@@ -1,0 +1,68 @@
+version: "3.0"
+services:
+    rabbitmq1:
+        hostname: 'rabbit-1'
+        image: rabbitmq:3.8-management
+        container_name: 'rabbit-1'
+        restart: always
+        ports:
+            - 5673:5672
+            - 15673:15672
+        volumes:
+            - '/C/SharedVolume/rabbit-1:/config1'
+            - '/C/SharedVolume/log:/var/log/rabbitmq'
+            - '/C/SharedVolume/data:/var/lib/rabbitmq'
+            - '/C/SharedVolume/definition:/etc/rabbitmqdef'
+        environment:
+            - RABBITMQ_DEFAULT_USER=guest
+            - RABBITMQ_DEFAULT_PASS=123456
+            - RABBITMQ_CONFIG_FILE=/config1/rabbitmq
+            - RABBITMQ_ERLANG_COOKIE=QMRVMUTGXWGRDGNTXPOM
+        networks:
+            - rabbit
+    rabbitmq2:
+        hostname: 'rabbit-2'
+        image: rabbitmq:3.8-management
+        container_name: 'rabbit-2'
+        restart: always
+        ports:
+            - 5674:5672
+            - 15674:15672
+        volumes:
+            - '/C/SharedVolume/rabbit-2:/config2'
+            - '/C/SharedVolume/log2:/var/log/rabbitmq'
+            - '/C/SharedVolume/data2:/var/lib/rabbitmq'
+        environment:
+            - RABBITMQ_DEFAULT_USER=guest
+            - RABBITMQ_DEFAULT_PASS=123456
+            - RABBITMQ_CONFIG_FILE=/config2/rabbitmq
+            - RABBITMQ_ERLANG_COOKIE=QMRVMUTGXWGRDGNTXPOM
+        networks:
+            - rabbit
+        depends_on:
+            - rabbitmq1
+    rabbitmq3:
+        hostname: 'rabbit-3'
+        image: rabbitmq:3.8-management
+        container_name: 'rabbit-3'
+        restart: always
+        ports:
+            - 5675:5672
+            - 15675:15672
+        volumes:
+            - '/C/SharedVolume/rabbit-3:/config3'
+            - '/C/SharedVolume/log3:/var/log/rabbitmq'
+            - '/C/SharedVolume/data3:/var/lib/rabbitmq'
+        environment:
+            - RABBITMQ_DEFAULT_USER=guest
+            - RABBITMQ_DEFAULT_PASS=123456
+            - RABBITMQ_CONFIG_FILE=/config3/rabbitmq
+            - RABBITMQ_ERLANG_COOKIE=QMRVMUTGXWGRDGNTXPOM
+        networks:
+            - rabbit
+        depends_on:
+            - rabbitmq2
+
+networks:
+    rabbit:
+        driver: bridge 
