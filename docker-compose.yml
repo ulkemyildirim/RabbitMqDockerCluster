@@ -9,8 +9,8 @@ services:
             - 5673:5672
             - 15673:15672
         volumes:
-            - '/C/SharedVolume/rabbit-1:/config1'
-            - '/C/SharedVolume/definition:/etc/rabbitmqdef'
+            - './rabbit-1:/config1'
+            - './definition:/etc/rabbitmqdef'
         environment:
             - RABBITMQ_DEFAULT_USER=guest
             - RABBITMQ_DEFAULT_PASS=123456
@@ -27,7 +27,7 @@ services:
             - 5674:5672
             - 15674:15672
         volumes:
-            - '/C/SharedVolume/rabbit-2:/config2'
+            - './rabbit-2:/config2'
         environment:
             - RABBITMQ_DEFAULT_USER=guest
             - RABBITMQ_DEFAULT_PASS=123456
@@ -46,7 +46,7 @@ services:
             - 5675:5672
             - 15675:15672
         volumes:
-            - '/C/SharedVolume/rabbit-3:/config3'
+            - './rabbit-3:/config3'
         environment:
             - RABBITMQ_DEFAULT_USER=guest
             - RABBITMQ_DEFAULT_PASS=123456
