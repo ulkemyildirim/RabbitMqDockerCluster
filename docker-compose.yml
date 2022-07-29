@@ -10,8 +10,6 @@ services:
             - 15673:15672
         volumes:
             - '/C/SharedVolume/rabbit-1:/config1'
-            - '/C/SharedVolume/log:/var/log/rabbitmq'
-            - '/C/SharedVolume/data:/var/lib/rabbitmq'
             - '/C/SharedVolume/definition:/etc/rabbitmqdef'
         environment:
             - RABBITMQ_DEFAULT_USER=guest
@@ -30,8 +28,6 @@ services:
             - 15674:15672
         volumes:
             - '/C/SharedVolume/rabbit-2:/config2'
-            - '/C/SharedVolume/log2:/var/log/rabbitmq'
-            - '/C/SharedVolume/data2:/var/lib/rabbitmq'
         environment:
             - RABBITMQ_DEFAULT_USER=guest
             - RABBITMQ_DEFAULT_PASS=123456
@@ -51,8 +47,6 @@ services:
             - 15675:15672
         volumes:
             - '/C/SharedVolume/rabbit-3:/config3'
-            - '/C/SharedVolume/log3:/var/log/rabbitmq'
-            - '/C/SharedVolume/data3:/var/lib/rabbitmq'
         environment:
             - RABBITMQ_DEFAULT_USER=guest
             - RABBITMQ_DEFAULT_PASS=123456
